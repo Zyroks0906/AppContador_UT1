@@ -51,8 +51,8 @@ Join our community of developers creating universal apps.
 
 # AppContador_UT1
 
-**Autor:** <Tu Nombre Apellidos>  
-**Fecha:** <DD/MM/AAAA>  
+**Autor:** <Alejandro Mejias Ramirez>  
+**Fecha:** 07/10/2025>  
 **Versión:** 1.0
 
 ## Tecnología elegida
