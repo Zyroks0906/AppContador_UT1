@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
-import { Image } from 'expo-image';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
+import { Image } from 'expo-image';
 
 export default function HomeScreen() {
   const [count, setCount] = useState<number>(0);
-
-  const increment = () => setCount(c => c + 1);
-  const decrement = () => setCount(c => c - 1);
-  const reset = () => setCount(0);
 
   return (
     <ParallaxScrollView
@@ -20,7 +16,10 @@ export default function HomeScreen() {
           source={require('@/assets/images/partial-react-logo.png')}
           style={styles.reactLogo}
         />
-      }>
+      }
+    >
+      {/* 🔹 Espacio superior para que el número no se corte */}
+      <View style={{ height: 180 }} />
 
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Mi App Contador 🎯</ThemedText>
@@ -28,43 +27,44 @@ export default function HomeScreen() {
 
       <ThemedView style={styles.counterContainer}>
         <ThemedText type="subtitle">Cuenta actual:</ThemedText>
-        <ThemedText type="title" style={styles.countText}>
-          {count}
-        </ThemedText>
+        <ThemedText type="title" style={styles.countText}>{count}</ThemedText>
         {count >= 10 && <ThemedText style={styles.emoji}>🎉 ¡Meta alcanzada!</ThemedText>}
       </ThemedView>
 
       <ThemedView style={styles.buttonsContainer}>
-        <TouchableOpacity
-          style={[styles.button, styles.decrement]}
-          onPress={decrement}>
+        <TouchableOpacity style={[styles.button, styles.decrement]} onPress={() => setCount(c => c - 1)}>
           <ThemedText type="defaultSemiBold" style={styles.buttonText}>−</ThemedText>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.button, styles.reset]}
-          onPress={reset}>
+        <TouchableOpacity style={[styles.button, styles.reset]} onPress={() => setCount(0)}>
           <ThemedText type="defaultSemiBold" style={styles.buttonText}>Reset</ThemedText>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.button, styles.increment]}
-          onPress={increment}>
+        <TouchableOpacity style={[styles.button, styles.increment]} onPress={() => setCount(c => c + 1)}>
           <ThemedText type="defaultSemiBold" style={styles.buttonText}>+</ThemedText>
         </TouchableOpacity>
       </ThemedView>
+
+      {/* 🔹 Espacio final opcional */}
+      <View style={{ height: 40 }} />
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  reactLogo: {
+    height: 178,
+    width: 290,
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+  },
   titleContainer: {
     alignItems: 'center',
-    marginTop: 60, 
+    marginBottom: 20,
   },
   counterContainer: {
     alignItems: 'center',
-    marginTop: 90, // espacio extra para que el número no se corte
     marginBottom: 20,
     gap: 12,
   },
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 16,
     marginTop: 40,
-    marginBottom: 80, // da un poco de espacio final
+    marginBottom: 80,
   },
   button: {
     paddingVertical: 14,
@@ -95,19 +95,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   countText: {
-    fontSize: 40, // número grande, legible
+    fontSize: 40,
     fontWeight: 'bold',
     marginVertical: 10,
   },
   emoji: {
     fontSize: 26,
     marginTop: 15,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
   },
 });

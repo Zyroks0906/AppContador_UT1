@@ -11,7 +11,8 @@ import { ThemedView } from '@/components/themed-view';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useThemeColor } from '@/hooks/use-theme-color';
 
-const HEADER_HEIGHT = 250;
+// 🔹 Aumentamos la altura del header para que haya espacio
+const HEADER_HEIGHT = 320;
 
 type Props = PropsWithChildren<{
   headerImage: ReactElement;
@@ -75,5 +76,6 @@ const styles = StyleSheet.create({
     padding: 32,
     gap: 16,
     overflow: 'hidden',
+    paddingTop: 40, // 🔹 empuja el contenido hacia abajo, número visible
   },
 });
